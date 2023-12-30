@@ -1,0 +1,25 @@
+image: node:lts
+
+cache:
+  paths:
+    - node_modules/
+    - .next/cache/
+
+pages:
+  before_script:
+    # Clean build folder
+    - find deploy -mindepth 1 -maxdepth 1 -type d | xargs rm -rf
+    - find deploy -type f -name "*.html" | xargs rm -rf
+    # Install packages
+    - npm ci
+
+  script:
+    # Build application
+    - npm run build
+
+  artifacts:
+    paths:
+      - deploy
+  publish: deploy
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "pages"'
