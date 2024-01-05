@@ -3,16 +3,16 @@ image: node:lts
 
 pages:
   before_script:
-    # Clean public folder
+# Clean public folder
     - find public -mindepth 1 -maxdepth 1 -type d | xargs rm -rf
     - find public -type f -name "*.html" | xargs rm -rf
-    # entra in base-blog e installa
+# entra in base-blog e installa
     - cd base-blog
     - npm install
   script:
-		# builda 
+# builda 
     - npm run build-ghpages
-		# torna su
+# torna su
     - cd ..
   artifacts:
     paths:
