@@ -1,3 +1,7 @@
+## `.gitlab-ci.yml`
+
+```yaml
+
 
 image: node:lts
 
@@ -20,3 +24,5 @@ pages:
   publish: public
   rules:
     - if: '$CI_COMMIT_REF_NAME == "main"'
+
+```
