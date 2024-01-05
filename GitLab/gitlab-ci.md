@@ -49,3 +49,27 @@ pages:
     - if: '$CI_COMMIT_REF_NAME == "main"'
 
 ```
+
+## DEPLOY DA CARTELLA DEV
+
+```yml
+
+image: node:lts
+
+pages:
+  before_script:
+    # Clean deploy folder
+    - find dev -mindepth 1 -maxdepth 1 -type d | xargs rm -rf
+    - find dev -type f -name "*.html" | xargs rm -rf
+    - npm install
+  script:
+    # build 
+    - npm run build
+  artifacts:
+    paths:
+      - dev
+  publish: dev
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+
+```
