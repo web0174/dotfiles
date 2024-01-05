@@ -26,3 +26,26 @@ pages:
     - if: '$CI_COMMIT_REF_NAME == "main"'
 
 ```
+
+
+```yml
+
+image: node:lts
+
+pages:
+  before_script:
+    # Clean public folder
+    - find public -mindepth 1 -maxdepth 1 -type d | xargs rm -rf
+    - find public -type f -name "*.html" | xargs rm -rf
+    - npm install
+  script:
+    # builda 
+    - npm run build-ghpages
+  artifacts:
+    paths:
+      - public
+  publish: public
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+
+```
