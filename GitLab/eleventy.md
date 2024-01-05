@@ -40,7 +40,7 @@ pages:
     - npm install
   script:
     # builda 
-    - npm run build-ghpages
+    - npm run build
   artifacts:
     paths:
       - public
